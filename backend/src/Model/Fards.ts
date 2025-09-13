@@ -1,5 +1,5 @@
 interface Fards {
     id:number,
     created_at: Date,
-    id_user_created: number
+    id_user_create_fard: number
 }

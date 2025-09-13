@@ -3,6 +3,6 @@ interface Users {
     name: string;
     email: string;
     password: string;
-    id_perfil: string;
+    perfil_id: string;
     active: boolean;
 }
