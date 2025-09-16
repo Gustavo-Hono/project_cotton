@@ -7,6 +7,7 @@ CREATE TABLE perfil (
 
 CREATE TYPE steps_enum AS ENUM ('COLHEITA', 'TRASPORTE', 'ARMAZENAMENTO');
 
+# Colocar data de validade 5 anos depois da colheita
 CREATE TABLE steps (
 	id serial primary key,
 	name_step steps_enum NOT NULL DEFAULT 'COLHEITA'

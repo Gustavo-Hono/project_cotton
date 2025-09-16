@@ -1,4 +1,4 @@
-interface Movimentations {
+export default interface Movimentations {
     id: number,
     fard_id: number,
     user_id: number,

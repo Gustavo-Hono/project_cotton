@@ -1,4 +1,4 @@
-interface Perfil {
+export default interface Perfil {
     id: number;
     cargos: ICargos;
 }
