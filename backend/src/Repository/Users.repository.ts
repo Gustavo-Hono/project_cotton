@@ -10,8 +10,8 @@ export default class UsersRepository{
         return rows
     }
 
-    async getById(id:number): Promise<Users|null> {
-        const {rows} = await db.query("SELECT id, name, email, perfil_id, active FROM users WHERE id=$1", [id])
+    async getByEmail(email:string): Promise<Users|null> {
+        const {rows} = await db.query("SELECT id, name, password, email, perfil_id, active FROM users WHERE email=$1 LIMIT 1", [email])
         console.log(rows)
         return rows[0] ?? null
     }
