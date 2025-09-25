@@ -60,7 +60,7 @@ export default class AuthService {
     );
     const { password: _omit, ...publicUser } = status_email;
 
-    return { ok: true, token, user: publicUser };
+    return { status_password: true, token, user: publicUser };
 
   }
 

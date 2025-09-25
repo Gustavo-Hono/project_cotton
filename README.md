@@ -11,3 +11,6 @@ npm i -D @types/bcrypt
 npm i pg
 npm i --save-dev @types/pg
 npm install dotenv
+
+npm i express
+npm i -D typescript ts-node @types/node @types/express @types/cors
