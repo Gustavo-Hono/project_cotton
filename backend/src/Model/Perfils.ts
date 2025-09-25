@@ -3,7 +3,7 @@ export default interface Perfil {
     cargos: ICargos;
 }
 
-enum ICargos {
+export enum ICargos {
     ADMIN = 'ADMIN',
     OPERADOR_DE_CAMPO = 'OPERADOR_DE_CAMPO'
 }

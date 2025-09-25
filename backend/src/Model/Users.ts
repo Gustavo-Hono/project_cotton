@@ -3,6 +3,6 @@ export default interface Users {
     name: string;
     email: string;
     password: string;
-    perfil_id: string;
+    perfil_id: number;
     active: boolean;
 }

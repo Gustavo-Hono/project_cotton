@@ -3,7 +3,7 @@ export default interface Steps {
     name_step: ISteps;
 }
 // Rastrear por fase
-enum ISteps {
+export enum ISteps {
     COLHEITA = 'COLHEITA',
     TRASPORTE = 'TRASPORTE',
     ARMAZENAMENTO = 'ARMAZENAMENTO'
