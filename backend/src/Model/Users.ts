@@ -6,3 +6,7 @@ export default interface Users {
     perfil_id: number;
     active: boolean;
 }
+
+export interface UserWithCargo extends Users {
+    nome_cargo: string;
+}

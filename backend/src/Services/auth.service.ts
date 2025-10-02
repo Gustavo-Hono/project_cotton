@@ -3,13 +3,13 @@ import bcrypt from "bcrypt";
 import UsersRepository from "../Repository/Users.repository";
 import jwt from "jsonwebtoken";
 
-const salt = 10;
-const JWT_SECRET = process.env.JWT_SECRET!;
+const salt = Number(process.env.SALT_ROUNDS);
+const JWT_SECRET = process.env.JWT_SECRET as string;
 const EXPIRES_IN = "1h";
 const repo = new UsersRepository();
 
 export default class AuthService {
-  async hashPassword(input: Users) {
+  async register(input: Users) {
     try {
       const password_hash = await bcrypt.hash(input.password, salt);
       const user = await repo.createUser({
@@ -54,6 +54,7 @@ export default class AuthService {
         sub: String(status_email.id),
         perfil_id: status_email.perfil_id,
         name: status_email.name,
+        cargo:  status_email.nome_cargo
       },
       JWT_SECRET,
       { expiresIn: EXPIRES_IN }
