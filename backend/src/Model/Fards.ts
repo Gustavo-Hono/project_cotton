@@ -1,5 +1,6 @@
 export default interface Fards {
     id:number,
     created_at: Date,
-    id_user_create_fard: number
+    id_user_create_fard: number,
+    active: boolean;
 }

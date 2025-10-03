@@ -30,7 +30,7 @@ CREATE TABLE movimentations (
 	perfil_id INTEGER NOT NULL,
 	user_id INTEGER NOT NULL,
 	step_id INTEGER NOT NULL,
-	time_movimentation TIMESTAMPTZ NOT NULL,
+	time_movimentation TIMESTAMPTZ NOT NULL NOW(),
 	FOREIGN KEY (perfil_id) REFERENCES perfil(id),
 	FOREIGN KEY (user_id) REFERENCES users(id),
 	FOREIGN KEY (step_id) REFERENCES steps(id)
@@ -39,7 +39,8 @@ CREATE TABLE movimentations (
 
 CREATE TABLE fards (
 	id serial primary key,
-	created_at timestamptz NOT NULL,
+	created_at timestamptz NOT NULL NOW(),
 	id_user_create_fard INTEGER NOT NULL,
+	active BOOLEAN NOT NULL DEFAULT TRUE,
 	FOREIGN KEY (id_user_create_fard) REFERENCES users(id)
 );

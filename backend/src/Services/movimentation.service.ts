@@ -1,4 +1,3 @@
-import { error } from "console";
 import FardsRepository from "../Repository/Fards.repository";
 import MovimentationsRepository from "../Repository/Movimentations.repository";
 import StepsRepository from "../Repository/Steps.repository";
@@ -30,9 +29,8 @@ export default class MovimentationsServices {
             throw new Error("ID do Step não encontrado")
         }
 
-        const timestamp = new Date();
 
-        const newMovimentation = await this.movimentationRepository.createMovimentation(fard_id, user_id, step_id, timestamp) 
+        const newMovimentation = await this.movimentationRepository.createMovimentation(fard_id, user_id, step_id) 
         return newMovimentation;
     }
 

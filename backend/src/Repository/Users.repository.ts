@@ -9,6 +9,12 @@ export default class UsersRepository{
         return rows
     }
 
+    async getById(id:number): Promise<Users|null> {
+        const {rows} = await db.query("SELECT * FROM users WHERE id=$1", [id])
+        console.log(rows)
+        return rows[0]
+    }
+
     async getByEmail(email:string): Promise<UserWithCargo|null> {
         const {rows} = await db.query("SELECT users.id, users.name, users.password, users.email, users.perfil_id, users.active, perfil.cargos AS nome_cargo FROM users JOIN perfil ON users.perfil_id = perfil.id WHERE users.email = $1;", [email])
         console.log(rows)
