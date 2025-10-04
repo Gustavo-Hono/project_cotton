@@ -1,6 +1,5 @@
 import db from "../db"
-import Steps, { ISteps } from "../Model/Steps"
-import Users from "../Model/Users"
+import Users, {UserWithCargo} from "../Model/Users"
 
 
 export default class UsersRepository{
@@ -11,7 +10,13 @@ export default class UsersRepository{
     }
 
     async getById(id:number): Promise<Users|null> {
-        const {rows} = await db.query("SELECT id, name, email, perfil_id, active FROM users WHERE id=$1", [id])
+        const {rows} = await db.query("SELECT * FROM users WHERE id=$1", [id])
+        console.log(rows)
+        return rows[0]
+    }
+
+    async getByEmail(email:string): Promise<UserWithCargo|null> {
+        const {rows} = await db.query("SELECT users.id, users.name, users.password, users.email, users.perfil_id, users.active, perfil.cargos AS nome_cargo FROM users JOIN perfil ON users.perfil_id = perfil.id WHERE users.email = $1;", [email])
         console.log(rows)
         return rows[0] ?? null
     }

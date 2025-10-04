@@ -1,4 +1,3 @@
-import { promises } from "dns";
 import db from "../db";
 import Movimentations from "../Model/Movimentations";
 
@@ -15,8 +14,8 @@ export default class MovimentationsRepository{
         return rows[0]
     }
 
-    async createMovimentation(perfil_id:number, user_id:number, step_id:number,time_movimentation:Date) {
-        const {rows} = await db.query("INSERT INTO movimentations(perfil_id, user_id, step_id, time_movimentation) VALUES ($1, $2, $3, $4) RETURNING id, perfil_id, user_id, step_id, time_movimentation", [perfil_id, user_id, step_id, time_movimentation])
+    async createMovimentation(fard_id:number, user_id:number, step_id:number) {
+        const {rows} = await db.query("INSERT INTO movimentations(fard_id, user_id, step_id, time_movimentation) VALUES ($1, $2, $3) RETURNING id, user_id, step_id", [fard_id, user_id, step_id])
         console.log(rows)
         return rows
     }
