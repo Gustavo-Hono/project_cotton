@@ -1,3 +1,4 @@
+import Fards from "../Model/Fards";
 import FardsRepository from "../Repository/Fards.repository";
 import UsersRepository from "../Repository/Users.repository";
 
@@ -20,8 +21,27 @@ export default class FardsService {
 
         const newFard = await this.fardRepository.createFard(timestamp, id_user_create_fard)
         return newFard;
+    } 
+
+    async getFards() {
+        const fards = await this.fardRepository.getAll();
+        return fards
     }
 
-    
+    async fardById(id:number)  {
+        const fardId = await this.fardRepository.getById(id)
+        if (fardId === null) {
+            throw new Error("Sem nenhum fardo")
+        }
+        return fardId
+    }
+
+    async deleteFard(id:number) {
+        const softDelete = await this.fardRepository.softDeleteFard(id);
+        if (softDelete === null) {
+            throw new Error("Sem nenhum fardo para deletar")
+        }
+        return softDelete
+    }
 
 }

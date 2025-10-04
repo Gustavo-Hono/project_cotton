@@ -28,10 +28,21 @@ export default class MovimentationsServices {
         if (!stepExist) {
             throw new Error("ID do Step não encontrado")
         }
-
-
         const newMovimentation = await this.movimentationRepository.createMovimentation(fard_id, user_id, step_id) 
         return newMovimentation;
+    }
+
+    async getMovimentationById(id:number) {
+        const movimentatioById = await this.movimentationRepository.getById(id);
+        if (movimentatioById === null) {
+            throw new Error("Movimentação nao existe")
+        }
+        return movimentatioById;
+    }
+
+    async getMovimentations() {
+        const allMovimentations = await this.movimentationRepository.getAll();
+        return allMovimentations;
     }
 
 }
