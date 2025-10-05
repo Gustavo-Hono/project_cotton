@@ -15,20 +15,22 @@ export default class MovimentationsServices {
         this.stepRepository = new StepsRepository();
     }
 
-    async registerMovimentation(fard_id:number, step_id:number, user_id:number) {
+    async registerMovimentation(dados: { fard_id: number; step_id: number }, usuario: { sub: string }) {
         
-        const fardoExist = await this.fardRepository.getById(fard_id);
+        const fardoExist = await this.fardRepository.getById(dados.fard_id);
 
         if (!fardoExist) {
             throw new Error('Fardo não encontrado.');
         }
 
-        const stepExist = await this.stepRepository.getById(step_id)
+        const stepExist = await this.stepRepository.getById(dados.step_id)
 
         if (!stepExist) {
             throw new Error("ID do Step não encontrado")
         }
-        const newMovimentation = await this.movimentationRepository.createMovimentation(fard_id, user_id, step_id) 
+        const userId = Number(usuario.sub);
+
+        const newMovimentation = await this.movimentationRepository.createMovimentation(dados.fard_id, userId, dados.step_id) 
         return newMovimentation;
     }
 
@@ -43,6 +45,11 @@ export default class MovimentationsServices {
     async getMovimentations() {
         const allMovimentations = await this.movimentationRepository.getAll();
         return allMovimentations;
+    }
+
+    async getFardsById(id:number){
+        const fardId = await this.movimentationRepository.findByFardoId(id)
+        return fardId
     }
 
 }

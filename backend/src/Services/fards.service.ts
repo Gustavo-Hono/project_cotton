@@ -1,6 +1,7 @@
 import Fards from "../Model/Fards";
 import FardsRepository from "../Repository/Fards.repository";
 import UsersRepository from "../Repository/Users.repository";
+import gerarQrCode from "../utils/geradorQr";
 
 export default class FardsService {
     private userRepository: UsersRepository;
@@ -17,10 +18,10 @@ export default class FardsService {
         if (!user_exist) {
             throw new Error(" Id inválido do usuário")
         }
-        const timestamp = new Date();
 
-        const newFard = await this.fardRepository.createFard(timestamp, id_user_create_fard)
-        return newFard;
+        const newFard = await this.fardRepository.createFard(id_user_create_fard)
+        const qrCode = await gerarQrCode(newFard.id);
+        return {fard: newFard, qrCode: qrCode};
     } 
 
     async getFards() {

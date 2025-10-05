@@ -11,11 +11,17 @@ export default class MovimentationsRepository{
     async getById(id:number): Promise<Movimentations|null> {
         const {rows} = await db.query("SELECT * FROM movimentations WHERE id=$1", [id])
         console.log(rows)
-        return rows[0]
+        return rows[0] ?? null
     }
 
     async createMovimentation(fard_id:number, user_id:number, step_id:number) {
-        const {rows} = await db.query("INSERT INTO movimentations(fard_id, user_id, step_id, time_movimentation) VALUES ($1, $2, $3) RETURNING id, user_id, step_id", [fard_id, user_id, step_id])
+        const {rows} = await db.query("INSERT INTO movimentations(fard_id, user_id, step_id) VALUES ($1, $2, $3) RETURNING id, user_id, step_id", [fard_id, user_id, step_id])
+        console.log(rows)
+        return rows[0]
+    }
+
+    async findByFardoId(id:number): Promise<Movimentations[]> {
+        const {rows} = await db.query("SELECT * FROM movimentations WHERE fard_id = $1", [id])
         console.log(rows)
         return rows
     }
