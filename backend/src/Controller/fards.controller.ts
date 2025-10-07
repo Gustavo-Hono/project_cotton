@@ -9,7 +9,7 @@ export default class FardsController {
         this.fardService = new FardsService();
     }
 
-    async createFard(req: RequestWithUser, res: Response) {
+    public createFard = async (req: RequestWithUser, res: Response) => {
         try {
             if (!req.usuario) {
                 return res.status(401).json({ message: "Usuário não autenticado." });
@@ -24,7 +24,7 @@ export default class FardsController {
         }
     }
 
-    async getFardsById(req: RequestWithUser, res: Response) {
+    public getFardsById = async (req: RequestWithUser, res: Response) => {
         try {
             const id = Number(req.params.id)
             if (Number.isNaN(id)) {
@@ -38,7 +38,7 @@ export default class FardsController {
         }
     }
 
-    async getFards(req: RequestWithUser, res: Response) {
+    public getFards = async (req: RequestWithUser, res: Response) => {
         try {
             const allFards = await this.fardService.getFards();
             return res.status(200).json(allFards);
@@ -47,7 +47,7 @@ export default class FardsController {
         }
     }
 
-    async deleteFard(req: RequestWithUser, res: Response) {
+    public deleteFard = async (req: RequestWithUser, res: Response) => {
         try {
             if(!Number(req.params.id)) {
                 return res.status(400).json({message: "Soft delete está faltando o id"})

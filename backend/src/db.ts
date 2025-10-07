@@ -1,6 +1,8 @@
+import 'dotenv/config';
 import pg from 'pg';
-import dotenv from "dotenv";
-dotenv.config();
+
+
+console.log("--------------------------------------")
 
 const db = new pg.Client ({
     host: process.env.DB_HOST,
@@ -14,6 +16,7 @@ db.connect()
   .then(() => console.log("Conectado ao banco!"))
   .catch((err) => {
     console.error("Conexão falhou:", err);
+    console.log(typeof(process.env.DB_PASSWORD))
     process.exit(1);
   });
 

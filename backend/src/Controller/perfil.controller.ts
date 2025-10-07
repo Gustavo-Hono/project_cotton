@@ -11,7 +11,7 @@ export default class PerfilController {
         this.perfilsServices = new PerfilServices()
     }
 
-    async handleCreatePerfil(req:RequestWithUser, res:Response) {
+    public handleCreatePerfil = async (req:RequestWithUser, res:Response)=> {
         try {
             const {nome_cargo} = req.body
 
@@ -25,7 +25,7 @@ export default class PerfilController {
         }
     }
 
-    async handleGetAllPerfils(req:RequestWithUser, res:Response) {
+    public handleGetAllPerfils = async (req:RequestWithUser, res:Response) => {
         try {
             const perfils = await this.perfilsServices.getPerfils()
             return res.status(200).json(perfils)
@@ -34,7 +34,7 @@ export default class PerfilController {
         }
     }
 
-    async handleGetPerfilById(req:Request, res:Response) {
+    public handleGetPerfilById = async (req:Request, res:Response) => {
         try {
             const id = Number(req.params.id)
             if (Number.isNaN(id)) {
@@ -47,7 +47,7 @@ export default class PerfilController {
         }
     }
 
-    async handleUpdatePerfil(req:RequestWithUser, res:Response) {
+    public handleUpdatePerfil = async (req:RequestWithUser, res:Response) => {
         try {
             const {nome_cargo} = req.body
             const id = Number(req.params.id)

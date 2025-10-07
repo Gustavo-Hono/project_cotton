@@ -11,27 +11,31 @@ export default class AuthController {
         this.usersService = new UsersService();
     }
 
-    async handleLogin(req: Request, res: Response) {
+    public handleLogin = async (req: Request, res: Response) => {
         try {
+            console.log("1. Requisição chegou no AuthController");
             const { email, password } = req.body;
 
             if (!email || !password) {
+                console.log("Passando pela verificacao 1")
                 return res.status(400).json({ message: "Email e senha são obrigatórios." });
             }
 
             const result = await this.authService.login(email, password);
 
             if (typeof result === 'string') {
+                console.log("Passando pela verificacao 2")
                 return res.status(401).json({ message: result });
             }
             return res.status(200).json(result);
 
         } catch (error: any) {
+            console.error("ERRO FATAL CAPTURADO:", error); 
             return res.status(500).json({ message: "Erro interno no servidor." });
         }
     }
 
-    async handleRegister(req: Request, res: Response) {
+    public handleRegister = async (req: Request, res: Response) => {
         try {
             const { name, email, password, perfil_id } = req.body;
 

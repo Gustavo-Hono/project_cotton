@@ -9,7 +9,7 @@ export default class MovimentationsController {
         this.movimentationService = new MovimentationsServices();
     }
 
-    async handleCreateMovimentation(req: RequestWithUser, res: Response) {
+    public handleCreateMovimentation = async (req: RequestWithUser, res: Response) =>{
         try {
             const {fard_id, step_id} = req.body
             
@@ -27,7 +27,7 @@ export default class MovimentationsController {
         }
     }
 
-    async handleMovimentation(req: RequestWithUser, res:Response) {
+    public handleMovimentation = async (req: RequestWithUser, res:Response) => {
         try {
             const movimentations = await this.movimentationService.getMovimentations()
             return res.status(200).json(movimentations)
@@ -35,7 +35,7 @@ export default class MovimentationsController {
             return res.status(500).json({message: error.message})
         }
     }
-    async handleMovimentationById(req:RequestWithUser, res:Response) {
+    public handleMovimentationById = async (req:RequestWithUser, res:Response) => {
         try {
             const id = Number(req.params.id)
             if(Number.isNaN(id)) {
@@ -49,7 +49,7 @@ export default class MovimentationsController {
         }
     }
 
-    async handleFardId(req:RequestWithUser, res:Response) {
+    public handleFardId =async (req:RequestWithUser, res:Response) => {
         try {
             const id = Number(req.params.id)
             if(Number.isNaN(id)) {

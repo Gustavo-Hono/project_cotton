@@ -14,7 +14,7 @@ export default class UsersController {
     }
   }
 
-  async handleUserById(req: RequestWithUser, res: Response) {
+  public handleUserById = async (req: RequestWithUser, res: Response) => {
     try {
       const id = Number(req.params.id);
       if (!Number.isInteger(id) || id <= 0) {
@@ -32,7 +32,7 @@ export default class UsersController {
     }
   }
 
-  async handleUserByEmail(req: RequestWithUser, res: Response) {
+  public handleUserByEmail = async (req: RequestWithUser, res: Response) => {
     try {
       const { email } = req.body;
       if (!email) return res.status(400).json({ message: "Email é obrigatório" });
@@ -49,7 +49,7 @@ export default class UsersController {
     }
   }
 
-  async handleNewUser(req: RequestWithUser, res: Response) {
+  public handleNewUser = async (req: RequestWithUser, res: Response) => {
     try {
       const { name, email, password, perfil_id, active } = req.body;
 
@@ -72,7 +72,7 @@ export default class UsersController {
     }
   }
 
-  async handleChangeUser(req: RequestWithUser, res: Response) {
+  public handleChangeUser = async (req: RequestWithUser, res: Response) => {
     try {
       const id = Number(req.params.id);
       const { password } = req.body;

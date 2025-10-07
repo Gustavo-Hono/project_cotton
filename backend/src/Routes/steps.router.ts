@@ -5,9 +5,9 @@ import StepsController from "../Controller/steps.controller";
 const router = Router()
 const steps = new StepsController();
 
-router.get('/steps/', checkPermission(['ADMIN']), steps.handleSteps)
-router.get('/steps/:id', checkPermission(['ADMIN']), steps.handleStepsByid)
-router.post('/steps/', checkPermission(['ADMIN']), steps.handleRegisterStep)
-router.patch('/steps/:id', checkPermission(['ADMIN']), steps.handleChangeStep)
+router.get('/', checkPermission(['ADMIN']), steps.handleSteps)
+router.get('/:id', checkPermission(['ADMIN']), steps.handleStepsByid)
+router.post('/', checkPermission(['ADMIN']), steps.handleRegisterStep)
+router.patch('/:id', checkPermission(['ADMIN']), steps.handleChangeStep)
 
 export default router

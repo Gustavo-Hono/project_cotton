@@ -18,7 +18,7 @@ export default class StepsController {
         }
     }
 
-    async handleStepsByid(req:RequestWithUser, res:Response) {
+    public handleStepsByid = async (req:RequestWithUser, res:Response) => {
         try {
             const id = Number(req.params.id)
             if(Number.isNaN(id)) {
@@ -31,7 +31,7 @@ export default class StepsController {
         }
     }
 
-    async handleRegisterStep(req:RequestWithUser, res:Response) {
+    public handleRegisterStep = async (req:RequestWithUser, res:Response) => {
         try {
             const {name_step} = req.body
             if (!name_step) {
@@ -44,7 +44,7 @@ export default class StepsController {
             return res.status(500).json({message: error.message})
         }
     }
-    async handleChangeStep(req:RequestWithUser, res:Response) {
+    public handleChangeStep = async (req:RequestWithUser, res:Response) => {
         try {
             const id = Number(req.params.id)
             if (!id) {
