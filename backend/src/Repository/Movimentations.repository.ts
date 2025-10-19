@@ -15,13 +15,23 @@ export default class MovimentationsRepository{
     }
 
     async createMovimentation(fard_id:number, user_id:number, step_id:number) {
-        const {rows} = await db.query("INSERT INTO movimentations(fard_id, user_id, step_id) VALUES ($1, $2, $3) RETURNING id, user_id, step_id", [fard_id, user_id, step_id])
+        console.log('Tentando inserir no banco:', { fard_id, user_id, step_id });
+        const {rows} = await db.query("INSERT INTO movimentations(fard_id, user_id, step_id) VALUES ($1, $2, $3) RETURNING *", [fard_id, user_id, step_id])
+        if (rows.length === 0) {
+        throw new Error("Falha ao criar movimentação...");
+    }
         console.log(rows)
         return rows[0]
     }
 
     async findByFardoId(id:number): Promise<Movimentations[]> {
         const {rows} = await db.query("SELECT * FROM movimentations WHERE fard_id = $1", [id])
+        console.log(rows)
+        return rows
+    }
+
+    async getDuplicate(fard_id:number, step_id:number): Promise<Movimentations[]> {
+        const {rows} = await db.query("SELECT * FROM movimentations WHERE fard_id = $1 AND step_id = $2", [fard_id, step_id])
         console.log(rows)
         return rows
     }

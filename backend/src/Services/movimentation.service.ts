@@ -28,6 +28,14 @@ export default class MovimentationsServices {
         if (!stepExist) {
             throw new Error("ID do Step não encontrado")
         }
+
+        const verifyDuplicate = await this.movimentationRepository.getDuplicate(dados.fard_id, dados.step_id)
+
+        if (verifyDuplicate.length >= 1) {
+            throw new Error("Esse Fardo já está nessa Etapa")
+        }
+        console.log('SERVICE: Chamando o repositório para criar');
+
         const userId = Number(usuario.sub);
 
         const newMovimentation = await this.movimentationRepository.createMovimentation(dados.fard_id, userId, dados.step_id) 

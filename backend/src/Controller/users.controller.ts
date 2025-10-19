@@ -5,7 +5,7 @@ import { Response } from "express";
 export default class UsersController {
   private userService = new UsersService();
 
-  async handleUsers(req: RequestWithUser, res: Response) {
+  public handleUsers = async (req: RequestWithUser, res: Response) => {
     try {
       const users = await this.userService.getUsers();
       return res.status(200).json(users);
@@ -59,10 +59,10 @@ export default class UsersController {
       if (!Number.isInteger(perfil_id)) {
         return res.status(400).json({ message: "perfil_id inválido" });
       }
-      if (active === undefined) {
-        return res.status(400).json({ message: "active é obrigatório (true/false)" });
-      }
-      const created = await this.userService.registerNewUser(name, email, password, perfil_id, active);
+      // if (active === undefined) {
+      //   return res.status(400).json({ message: "active é obrigatório (true/false)" });
+      // }
+      const created = await this.userService.registerNewUser(name, email, password, perfil_id);
       return res.status(201).json(created);
     } catch (err: any) {
       if (err.message.includes('Não encontrado')) {

@@ -31,7 +31,7 @@ export default class UsersService{
         return userEmail;
     }
     
-    async registerNewUser(name:string, email:string, password:string, perfil_id:number, active: boolean) {
+    async registerNewUser(name:string, email:string, password:string, perfil_id:number) {
         const checkPerfilId = await this.perfilRepository.getById(perfil_id)
         if (!checkPerfilId) {
             throw new Error('id do perfil nao encontrado para a criação do usuario')
@@ -48,7 +48,7 @@ export default class UsersService{
             email:email,
             password:password_hash,
             perfil_id:perfil_id,
-            active:active
+            active:true
         })
         return newUser;
 

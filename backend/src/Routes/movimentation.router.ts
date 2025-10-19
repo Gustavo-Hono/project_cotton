@@ -9,7 +9,6 @@ const fard = new FardsController();
 
 router.get('/', checkPermission(['ADMIN']), movimentation.handleMovimentation)
 router.get('/:id', checkPermission(['ADMIN', 'OPERADOR_DE_CAMPO']), movimentation.handleMovimentationById)
-router.get('/fardos/:id/movimentations', checkPermission(['ADMIN', 'OPERADOR_DE_CAMPO']), fard.getFardsById)
 router.post('/', checkPermission(['ADMIN', 'OPERADOR_DE_CAMPO']), movimentation.handleCreateMovimentation)
 
 export default router

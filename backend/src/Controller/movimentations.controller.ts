@@ -19,10 +19,13 @@ export default class MovimentationsController {
             if(!fard_id || !step_id) {
                 return res.status(400).json({message: "id do fardo ou do step faltando"})
             }
+            console.log('CONTROLLER: Chamando o serviço...');
 
             const newMovimentation = await this.movimentationService.registerMovimentation({fard_id:Number(fard_id), step_id:Number(step_id)}, req.usuario)
+            console.log('CONTROLLER: Recebido do serviço, enviando resposta:', newMovimentation);
             return res.status(201).json(newMovimentation)
         } catch (error: any) {
+            console.error('CONTROLLER: Erro capturado!', error);
             return res.status(500).json({message: error.message})
         }
     }

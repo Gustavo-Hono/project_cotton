@@ -45,7 +45,7 @@ export default class AuthController {
 
             const active = true;
 
-            const newUser = await this.usersService.registerNewUser(name, email, password, perfil_id, active);
+            const newUser = await this.usersService.registerNewUser(name, email, password, perfil_id);
 
             return res.status(201).json(newUser);
 

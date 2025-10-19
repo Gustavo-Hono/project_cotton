@@ -4,7 +4,7 @@ import Users, {UserWithCargo} from "../Model/Users"
 
 export default class UsersRepository{
     async getAll(): Promise<Users[]> {
-        const {rows} = await db.query("SELECT id, name, email, perfil_id, active FROM users")
+        const {rows} = await db.query("SELECT users.id, users.name, users.email, users.perfil_id, active, perfil.cargos AS nome_cargo FROM users JOIN perfil ON users.perfil_id = perfil.id WHERE users.active = true")
         console.log(rows)
         return rows
     }

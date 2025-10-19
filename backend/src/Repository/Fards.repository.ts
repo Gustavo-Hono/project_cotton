@@ -3,7 +3,7 @@ import Fards from "../Model/Fards";
 
 export default class FardsRepository {
     async getAll(): Promise<Fards[]> {
-        const {rows} = await db.query("SELECT * FROM fards WHERE active = true")
+        const {rows} = await db.query("SELECT * FROM fards ORDER BY id ASC")
         console.log(rows)
         return rows
     }
